@@ -15,14 +15,14 @@ public interface ModuleIO {
     public double drivePositionRad =
         0.0; // Represents angular position in Radians - conversion to meters occurs in Module.java
     // cause it makes it easier for simulation integration
-    public double drivePositionRadPerSec = 0.0;
+    public double driveVelocityRadPerSec = 0.0;
     public double driveAppliedVolts = 0.0;
     public double[] driveCurrentAmps = new double[] {0.0};
     public double[] driveTemperatureCelsius = new double[] {0.0};
 
     public Rotation2d azimuthAbsolutePosition = new Rotation2d();
     public Rotation2d azimuthPosition = new Rotation2d();
-    public double azimuthPositionRadPerSec = 0.0;
+    public double azimuthVelocityRadPerSec = 0.0;
     public double azimuthAppliedVolts = 0.0;
     public double[] azimuthCurrentAmps = new double[] {0.0};
     public double[] azimuthTemperatureCelsius = new double[] {0.0};
