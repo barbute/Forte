@@ -8,6 +8,7 @@ package frc.robot;
  */
 public class Constants {
   public static final Mode currentMode = Mode.REAL;
+  public static final boolean debuggingMode = false;
 
   public static enum Mode {
     /** Running on a real robot. */

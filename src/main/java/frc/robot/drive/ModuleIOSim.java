@@ -27,6 +27,9 @@ public class ModuleIOSim implements ModuleIO {
 
   @Override
   public void updateInputs(ModuleIOInputs inputs) {
+    driveMotor.update(LOOP_PERIOD_S);
+    azimuthMotor.update(LOOP_PERIOD_S);
+
     inputs.drivePositionRad = driveMotor.getAngularPositionRad();
     inputs.driveVelocityRadPerSec = driveMotor.getAngularVelocityRadPerSec();
     inputs.driveAppliedVolts = driveAppliedVolts;
