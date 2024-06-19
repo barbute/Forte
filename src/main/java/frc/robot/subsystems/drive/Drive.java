@@ -24,6 +24,10 @@ public class Drive extends SubsystemBase {
   private static final double MAX_LINEAR_SPEED_MPS = Units.feetToMeters(14.5);
   private static final double TRACK_WIDTH_X = Units.inchesToMeters(25.0);
   private static final double TRACK_WIDTH_Y = Units.inchesToMeters(25.0);
+  private static final double DRIVE_BASE_RADIUS =
+      Math.hypot(TRACK_WIDTH_X / 2.0, TRACK_WIDTH_Y / 2.0);
+  private static final double MAX_ANGULAR_SPEED_MPS =
+      MAX_LINEAR_SPEED_MPS / DRIVE_BASE_RADIUS; // 24.0 * Math.PI
 
   private Module[] modules = new Module[4]; // FL FR BL BR;
   private GyroIO gyroIO;
@@ -147,6 +151,11 @@ public class Drive extends SubsystemBase {
     return poseEstimator.getEstimatedPosition();
   }
 
+  /** Returns the current odometry rotation - uses pose estimate */
+  public Rotation2d getRotation() {
+    return getPose().getRotation();
+  }
+
   /** Returns the module states (turn angles and drive velocities) for all of the modules. */
   @AutoLogOutput(key = "SwerveStates/Measured")
   private SwerveModuleState[] getModuleStates() {
@@ -164,6 +173,16 @@ public class Drive extends SubsystemBase {
       states[i] = modules[i].getPosition();
     }
     return states;
+  }
+
+  /** Returns the maximum linear speed in meters per sec. */
+  public double getMaxLinearSpeedMetersPerSec() {
+    return MAX_LINEAR_SPEED_MPS;
+  }
+
+  /** Returns the maximum angular speed in radians per sec. */
+  public double getMaxAngularSpeedRadPerSec() {
+    return MAX_ANGULAR_SPEED_MPS;
   }
 
   /** Returns an array of module translations. */
