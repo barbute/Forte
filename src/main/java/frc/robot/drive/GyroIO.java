@@ -10,11 +10,13 @@ import org.littletonrobotics.junction.AutoLog;
 /** Interface to represent a Gyroscope */
 public interface GyroIO {
   @AutoLog
+  /** Sensor data from the gyro - used as "inputs" for the robot code */
   public static class GyroIOInputs {
     public boolean connected = false;
     public Rotation2d yawPosition = new Rotation2d();
     public double yawVelocityRadPerSec = 0.0;
   }
 
+  /** Updates the set of loggable inputs. */
   public default void updateInputs(GyroIOInputs inputs) {}
 }

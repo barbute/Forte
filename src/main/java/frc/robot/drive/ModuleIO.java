@@ -13,7 +13,8 @@ public interface ModuleIO {
   /** Sensor data from the module - used as "inputs" for the robot code */
   public static class ModuleIOInputs {
     public double drivePositionRad =
-        0.0; // Represents angular position in Radians - conversion to meters occurs in Module.java
+        0.0; // Represents angular position in Radians - the conversion to meters occurs in
+    // Module.java
     // cause it makes it easier for simulation integration
     public double driveVelocityRadPerSec = 0.0;
     public double driveAppliedVolts = 0.0;
