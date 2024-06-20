@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.simulation.DCMotorSim;
 public class ModuleIOSim implements ModuleIO {
   private final double LOOP_PERIOD_S = 0.02;
   // TODO Set these for Forte's gear ratios
-  private static final double DRIVE_GEAR_RATIO = 1.0 / 1.0;
-  private static final double AZIMUTH_GEAR_RATIO = 1.0 / 1.0;
+  private static final double DRIVE_GEAR_RATIO = 6.75 / 1.0;
+  private static final double AZIMUTH_GEAR_RATIO = 150.0 / 7.0;
 
   private DCMotorSim driveMotor = new DCMotorSim(DCMotor.getNEO(1), DRIVE_GEAR_RATIO, 0.025);
   private DCMotorSim azimuthMotor = new DCMotorSim(DCMotor.getNEO(1), AZIMUTH_GEAR_RATIO, 0.004);

@@ -79,13 +79,13 @@ public class Module {
     azimuthFeedbackD = new LoggedTunableNumber("Drive/Tuning/AzimuthD", azimuthFeedback.getD());
 
     azimuthFeedback.enableContinuousInput(-Math.PI, Math.PI);
-    // setBrakeMode(true);
+    setBrakeMode(true);
   }
 
   /** Method called in subsystem periodic */
   public void peridoic() {
     moduleIO.updateInputs(moduleIOInputs);
-    Logger.processInputs("Drvie/Module" + Integer.toString(INDEX), moduleIOInputs);
+    Logger.processInputs("Drive/Module" + Integer.toString(INDEX), moduleIOInputs);
 
     // On first cycle, reset relative turn encoder
     // Wait until absolute angle is nonzero in case it wasn't initialized yet
@@ -99,6 +99,16 @@ public class Module {
     if (angleSetpoint != null) {
       moduleIO.setAzimuthVolts(
           // Must call getAngle() and not directly from inputs since getAngle() applies the offset
+          azimuthFeedback.calculate(getAngle().getRadians(), angleSetpoint.getRadians()));
+
+      Logger.recordOutput(
+          "Drive/Module" + Integer.toString(INDEX) + "/AzimuthSetpoint",
+          azimuthFeedback.getSetpoint());
+      Logger.recordOutput(
+          "Drive/Module" + Integer.toString(INDEX) + "/AzimuthError",
+          azimuthFeedback.getPositionError());
+      Logger.recordOutput(
+          "Drive/Module" + Integer.toString(INDEX) + "/AzimuthOutput",
           azimuthFeedback.calculate(getAngle().getRadians(), angleSetpoint.getRadians()));
 
       // Run closed loop drive control

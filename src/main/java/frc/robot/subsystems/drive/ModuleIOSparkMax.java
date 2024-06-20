@@ -17,8 +17,8 @@ import edu.wpi.first.math.util.Units;
 /** ModuleIO implementation for SparkMax motor controller (NEO) */
 public class ModuleIOSparkMax implements ModuleIO {
   // TODO Set these for Forte's gear ratios
-  private static final double DRIVE_GEAR_RATIO = 1.0 / 1.0;
-  private static final double AZIMUTH_GEAR_RATIO = 1.0 / 1.0;
+  private static final double DRIVE_GEAR_RATIO = 6.75 / 1.0;
+  private static final double AZIMUTH_GEAR_RATIO = 150.0 / 7.0;
 
   private CANSparkMax driveMotor;
   private CANSparkMax azimuthMotor;
